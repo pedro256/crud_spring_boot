@@ -1,4 +1,4 @@
-package com.pedro256.app.models;
+package com.pedro256.app.models.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;

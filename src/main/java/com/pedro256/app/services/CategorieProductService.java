@@ -3,7 +3,7 @@ package com.pedro256.app.services;
 import com.pedro256.app.entity.CategoryProductEntity;
 import com.pedro256.app.exceptions.BadRequestException;
 import com.pedro256.app.exceptions.NotFoundException;
-import com.pedro256.app.models.CategoryProductModel;
+import com.pedro256.app.models.model.CategoryProductModel;
 import com.pedro256.app.repositories.CategoryProductrepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,16 +39,8 @@ public class CategorieProductService {
 
         CategoryProductEntity categoryProduct = categoryProductEntity.get();
 
-        if(model.getName()!=null && model.getName() != categoryProduct.getName()){
-            if(model.getName().length()<5){
-                throw new BadRequestException("Nome deve conter mais de 4 caracteres");
-            }
-            categoryProduct.setName(model.getName());
-        }
-
-        if(model.getDescription()!=null && model.getDescription() != categoryProduct.getDescription()){
-            categoryProduct.setDescription(model.getDescription());
-        }
+        categoryProduct.setName(model.getName());
+        categoryProduct.setDescription(model.getDescription());
 
         var response = catProdRepo.save(categoryProduct);
 

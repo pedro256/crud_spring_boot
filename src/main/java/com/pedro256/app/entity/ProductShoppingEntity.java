@@ -1,9 +1,6 @@
 package com.pedro256.app.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,7 +8,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Table(name="PRODUCT_SHOPPING")
 public class ProductShoppingEntity {
 

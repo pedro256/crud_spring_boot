@@ -1,7 +1,7 @@
 package com.pedro256.app.controllers;
 
 import com.pedro256.app.exceptions.BadRequestException;
-import com.pedro256.app.models.WelcomeVM;
+import com.pedro256.app.models.base.WelcomeVM;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -22,9 +22,12 @@ public class ProductEntity {
     private String name;
     @Column(name = "PRICE")
     private float price;
+    @Column(name="STOCK")
+    private int stock;
     @Column(name = "BARCODE")
     private String barcode;
     @Column(name = "CATEGORY_ID")
     private Long categoryId;
+
 
 }

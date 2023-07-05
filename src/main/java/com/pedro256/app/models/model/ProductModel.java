@@ -1,10 +1,10 @@
-package com.pedro256.app.models;
+package com.pedro256.app.models.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class ProductModel {
 
     private Long id;

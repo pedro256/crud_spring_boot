@@ -29,5 +29,8 @@ public class ShoppingEntity {
     @Column(name = "SELLER_ID")
     private Long sellerId;
 
+    @Column(name="STATUS")
+    private int status;
+
 
 }

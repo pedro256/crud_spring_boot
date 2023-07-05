@@ -1,10 +1,8 @@
 package com.pedro256.app.services;
 
-import com.pedro256.app.entity.CategoryProductEntity;
 import com.pedro256.app.entity.ProductEntity;
 import com.pedro256.app.exceptions.BadRequestException;
-import com.pedro256.app.models.CategoryProductModel;
-import com.pedro256.app.models.ProductModel;
+import com.pedro256.app.models.model.ProductModel;
 import com.pedro256.app.repositories.CategoryProductrepository;
 import com.pedro256.app.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

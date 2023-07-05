@@ -1,8 +1,7 @@
 package com.pedro256.app.controllers;
 
-import com.pedro256.app.models.CategoryProductModel;
-import com.pedro256.app.models.CreatedResponseModel;
-import com.pedro256.app.models.ProductModel;
+import com.pedro256.app.models.base.CreatedResponseModel;
+import com.pedro256.app.models.model.ProductModel;
 import com.pedro256.app.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
