@@ -1,13 +1,15 @@
 package com.pedro256.app.controllers;
 
-import com.pedro256.app.exceptions.BadRequestException;
-import com.pedro256.app.models.SaveCategoryProductModel;
+import com.pedro256.app.models.CategoryProductModel;
+import com.pedro256.app.models.CreatedResponseModel;
 import com.pedro256.app.services.CategorieProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/category-product")
@@ -17,20 +19,29 @@ public class CategoryProductController {
     private CategorieProductService categorieProductService;
 
     @RequestMapping()
-    public List<SaveCategoryProductModel> getAll(){
+    public List<CategoryProductModel> getAll(){
         return categorieProductService.listarTodos();
     }
     @PostMapping()
-    public SaveCategoryProductModel create(@RequestBody SaveCategoryProductModel model){
-        if(model.getId()!= null){
-            model.setId(null);
-        }
-        return categorieProductService.save(model);
+    public ResponseEntity<CreatedResponseModel> create(@RequestBody CategoryProductModel model){
+        Long id = categorieProductService.create(model);
+        return new ResponseEntity<>(
+                new CreatedResponseModel(new Date(),true,"/category-product/"+id),
+                HttpStatus.CREATED
+        );
     }
+
     @PutMapping("/{id}")
-    public SaveCategoryProductModel update(@PathVariable Long id,@RequestBody SaveCategoryProductModel model){
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody CategoryProductModel model){
         model.setId(id);
-        return categorieProductService.save(model);
+        categorieProductService.update(model);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        categorieProductService.deleteOne(id);
+        return ResponseEntity.noContent().build();
     }
 
 

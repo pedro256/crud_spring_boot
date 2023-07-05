@@ -19,9 +19,11 @@ public class SellerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "INTERPRISE_ID")
     private String interpriseId;
+    @Column(name = "BIRTH_DATE")
     private Date birthDate;
 
 }

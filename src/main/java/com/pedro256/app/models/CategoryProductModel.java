@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SaveCategoryProductModel {
+public class CategoryProductModel {
     private Long id;
     private String name;
     private String description;

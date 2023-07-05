@@ -18,10 +18,13 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "PRICE")
     private float price;
+    @Column(name = "BARCODE")
     private String barcode;
+    @Column(name = "CATEGORY_ID")
     private Long categoryId;
 
 }

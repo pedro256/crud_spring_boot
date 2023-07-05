@@ -2,7 +2,8 @@ package com.pedro256.app.services;
 
 import com.pedro256.app.entity.CategoryProductEntity;
 import com.pedro256.app.exceptions.BadRequestException;
-import com.pedro256.app.models.SaveCategoryProductModel;
+import com.pedro256.app.exceptions.NotFoundException;
+import com.pedro256.app.models.CategoryProductModel;
 import com.pedro256.app.repositories.CategoryProductrepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,27 +17,50 @@ public class CategorieProductService {
     @Autowired
     private CategoryProductrepository catProdRepo;
 
-    public SaveCategoryProductModel save(SaveCategoryProductModel model){
+    public Long create(CategoryProductModel model){
         CategoryProductEntity cPEtt = new CategoryProductEntity(
                 model.getId(),
                 model.getName(),
                 model.getDescription());
 
-        System.out.println(model.getId());
 
         var response = catProdRepo.save(cPEtt);
 
-        model.setId(response.getId());
 
-        return model;
+        return response.getId();
+    }
+    public boolean update(CategoryProductModel model){
+
+        Optional<CategoryProductEntity> categoryProductEntity = catProdRepo.findById(model.getId());
+
+        if(categoryProductEntity.isEmpty()){
+            throw new NotFoundException("Categoria não encontrada !");
+        }
+
+        CategoryProductEntity categoryProduct = categoryProductEntity.get();
+
+        if(model.getName()!=null && model.getName() != categoryProduct.getName()){
+            if(model.getName().length()<5){
+                throw new BadRequestException("Nome deve conter mais de 4 caracteres");
+            }
+            categoryProduct.setName(model.getName());
+        }
+
+        if(model.getDescription()!=null && model.getDescription() != categoryProduct.getDescription()){
+            categoryProduct.setDescription(model.getDescription());
+        }
+
+        var response = catProdRepo.save(categoryProduct);
+
+        return true;
     }
 
-    public List<SaveCategoryProductModel> listarTodos(){
+    public List<CategoryProductModel> listarTodos(){
         var listEtt = catProdRepo.findAll();
 
-        List<SaveCategoryProductModel> list = listEtt.stream()
+        List<CategoryProductModel> list = listEtt.stream()
                 .map(ett -> {
-                    SaveCategoryProductModel model = new SaveCategoryProductModel();
+                    CategoryProductModel model = new CategoryProductModel();
                     model.setId(ett.getId());
                     model.setName(ett.getName());
                     model.setDescription(ett.getDescription());
@@ -46,5 +70,14 @@ public class CategorieProductService {
 
         return list;
 
+    }
+
+    public boolean deleteOne(Long id){
+        Optional<CategoryProductEntity> ett = catProdRepo.findById(id) ;
+        if(ett.isEmpty()){
+            throw new NotFoundException("Categoria não encontrada !");
+        }
+        catProdRepo.delete(ett.get());
+        return  true;
     }
 }

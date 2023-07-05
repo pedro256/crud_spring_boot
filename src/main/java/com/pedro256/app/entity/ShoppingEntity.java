@@ -20,8 +20,13 @@ public class ShoppingEntity {
     @Column(name = "ID")
     private Long id;
 
+    @Column(name = "CLIENT_NAME")
     private String clientName;
+
+    @Column(name = "CLIENT_CPF")
     private String clientCPF;
+
+    @Column(name = "SELLER_ID")
     private Long sellerId;
 
 
