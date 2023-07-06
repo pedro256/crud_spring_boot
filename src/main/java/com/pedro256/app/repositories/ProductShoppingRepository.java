@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ProductShoppingRepository extends JpaRepository<ProductShoppingEntity,Long> {
 
-    List<ProductShoppingEntity> findByidShoppingAndidProduct(Long idShopping, Long idProduct);
+    List<ProductShoppingEntity> findByidShoppingAndIdProduct(Long idShopping, Long idProduct);
 }

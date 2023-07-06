@@ -1,11 +1,14 @@
 package com.pedro256.app.models.model;
 
+
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
-public class RequestProductsToBuy {
-    List<ProductToBuyModel> listProducts;
+public class ProductToBuyModel {
+    @NotNull
+    private Long idProduct;
+    @NotNull
+    private int qtd;
 }
